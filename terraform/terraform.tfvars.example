@@ -1,0 +1,35 @@
+# Copy to terraform.tfvars and edit. *.tfvars is git-ignored.
+
+region                 = "ap-northeast-1"
+identity_center_region = "ap-northeast-1"
+workload_profile       = "workload-admin"
+management_profile     = "management-admin"
+
+teams = ["platform", "app"]
+
+# One line per person. Change "bedrock" <-> "team" to move someone.
+users = {
+  "alice@example.com" = { team = "platform", plan = "team" }
+  "bob@example.com"   = { team = "app", plan = "bedrock" }
+  "carol@example.com" = { team = "app", plan = "bedrock" }
+}
+
+# System cross-region inference profiles to copy:
+#   aws bedrock list-inference-profiles --type-equals SYSTEM_DEFINED --region ap-northeast-1
+models = {
+  primary    = "arn:aws:bedrock:ap-northeast-1:<account-id>:inference-profile/<primary-profile-id>"
+  background = "arn:aws:bedrock:ap-northeast-1:<account-id>:inference-profile/<background-profile-id>"
+}
+model_ids                     = ["<primary-foundation-model-id>", "<background-foundation-model-id>"]
+inference_destination_regions = ["ap-northeast-1", "ap-northeast-3"]
+
+# From bedrock-secure-access outputs
+guardrail_arn             = "arn:aws:bedrock:ap-northeast-1:<account-id>:guardrail/<guardrail-id>"
+guardrail_version         = "1"
+invocation_log_group_name = "/aws/bedrock/bedrock-secure/invocations"
+
+claude_saml_application_arn = null # set after docs/saml-setup.md
+claude_org_uuid             = "00000000-0000-0000-0000-000000000000"
+
+team_monthly_budget_usd = 200
+budget_alert_emails     = ["cloud-team@example.com"]

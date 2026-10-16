@@ -1,0 +1,16 @@
+{
+  "awsAuthRefresh": "aws sso login --profile claude-bedrock",
+  "env": {
+    "CLAUDE_CODE_USE_BEDROCK": "1",
+    "AWS_PROFILE": "claude-bedrock",
+    "AWS_REGION": "ap-northeast-1",
+    "ANTHROPIC_MODEL": "arn:aws:bedrock:ap-northeast-1:111122223333:application-inference-profile/<platform-primary-id>",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "arn:aws:bedrock:ap-northeast-1:111122223333:application-inference-profile/<platform-primary-id>",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "arn:aws:bedrock:ap-northeast-1:111122223333:application-inference-profile/<platform-primary-id>",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "arn:aws:bedrock:ap-northeast-1:111122223333:application-inference-profile/<platform-background-id>",
+    "ANTHROPIC_CUSTOM_HEADERS": "X-Amzn-Bedrock-GuardrailIdentifier: <guardrail-id>\nX-Amzn-Bedrock-GuardrailVersion: 1"
+  },
+  "permissions": {
+    "disableBypassPermissionsMode": "disable"
+  }
+}
